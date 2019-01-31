@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Janet & Malcolm</title>
+  <link href="https://fonts.googleapis.com/css?family=Cutive+Mono" rel="stylesheet">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <style>
+    body {
+      background-color: #F2F4F3;
+    }
+    hr {
+      border-top: 1px solid #2E2F2F;
+      width: 80%;
+    }
+    canvas, #content {
+      position: absolute;
+    }
+    canvas {
+      z-index: 0;
+    }
+    #content {
+      font-family: 'Cutive Mono', monospace;
+      font-size: 1.75em;
+      color: #2E2F2F;
+      z-index: 1;
+    }
+    #display {
+      position: fixed;
+      z-index: 2;
+      pointer-events: none;
+    }
+    @media (min-width: 768px) {
+      #content {
+        margin: 8em;
+      }
+    }
+    @media (max-width: 768px) {
+      #content {
+        margin: 0;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <canvas id="display"></canvas>
+  <div id="content">
+    <p id="header">Janet And Malcolm Are Getting Married</p>
+    <hr>
+    <p>
+      Meet us at the Picton foreshore at <b>midday X September</b> and we'll take care of the rest. 
+    </p>
+    <p>
+      Wear something that's smart and comfy as we need you cutting some shapes on the dance floor later.
+    </p>
+    
+    <iframe id="JotFormIFrame-90221138204847" allowtransparency="true" src="https://form.jotform.co/90221138204847" frameborder="0" style="width: 1px; min-width: 100%; height:539px; border:none;" scrolling="no" > </iframe> <script type="text/javascript"> var ifr = document.getElementById("JotFormIFrame-90221138204847"); if(window.location.href && window.location.href.indexOf("?") > -1) { var get = window.location.href.substr(window.location.href.indexOf("?") + 1); if(ifr && get.length > 0) { var src = ifr.src; src = src.indexOf("?") > -1 ? src + "&" + get : src + "?" + get; ifr.src = src; } } window.handleIFrameMessage = function(e) { if (typeof e.data === 'object') { return; } var args = e.data.split(":"); if (args.length > 2) { iframe = document.getElementById("JotFormIFrame-" + args[(args.length - 1)]); } else { iframe = document.getElementById("JotFormIFrame"); } if (!iframe) { return; } switch (args[0]) { case "scrollIntoView": iframe.scrollIntoView(); break; case "setHeight": iframe.style.height = args[1] + "px"; break; case "collapseErrorPage": if (iframe.clientHeight > window.innerHeight) { iframe.style.height = window.innerHeight + "px"; } break; case "reloadPage": window.location.reload(); break; case "loadScript": var src = args[1]; if (args.length > 3) { src = args[1] + ':' + args[2]; } var script = document.createElement('script'); script.src = src; script.type = 'text/javascript'; document.body.appendChild(script); break; case "exitFullscreen": if (window.document.exitFullscreen) window.document.exitFullscreen(); else if (window.document.mozCancelFullScreen) window.document.mozCancelFullScreen(); else if (window.document.mozCancelFullscreen) window.document.mozCancelFullScreen(); else if (window.document.webkitExitFullscreen) window.document.webkitExitFullscreen(); else if (window.document.msExitFullscreen) window.document.msExitFullscreen(); break; } var isJotForm = (e.origin.indexOf("jotform") > -1) ? true : false; if(isJotForm && "contentWindow" in iframe && "postMessage" in iframe.contentWindow) { var urls = {"docurl":encodeURIComponent(document.URL),"referrer":encodeURIComponent(document.referrer)}; iframe.contentWindow.postMessage(JSON.stringify({"type":"urls","value":urls}), "*"); } }; if (window.addEventListener) { window.addEventListener("message", handleIFrameMessage, false); } else if (window.attachEvent) { window.attachEvent("onmessage", handleIFrameMessage); } </script>
+
+    <p><b>Smart and comfy dress!? I need more details. Is it formal, or casual, or smart casual or business casual? Should I wear my glittery suit, or my velvet one?</b><br>
+    We'd recommend wearing something you feel a bit fancy in, but not too fancy. Ladies don't need to wear heels and men don't need to wear suit jackets or ties. The surroundings will be grass and beach and we'll dance into the evening so it could get chillier later. Fingers crossed for no rain, but if it does, there will be a wet weather back up that is sheltered.</p>
+    
+    <p><b>I can get hangry. Should I bring snacks, or will you have food?</b><br>
+    There will be appetisers straight after the ceremony and into the evening. There will be a cocktail menu for the dinner, brought to you by one of Marlborough's best (and most lovely) chefs full of proudly sourced local ingredients.</p>
+    
+    <p><b>Where should I stay?</b><br>
+    Accomodation is recommended around Picton foreshore. Here are a few recommended hotels close by to our meeting point.</p>
+    
+    <p><b>How do I get to this place called Picton?</b><br>
+    Flying to Wellington (beautiful capital city of NZ) is your best bet.<br>
+    Once in Wellington, you have a few options:<br>
+    1. Internal flight (Jetstar or AirNZ - see flights.google.com)<br>
+    2. Soundsair (tiny flight that is around $70 and quite the kiwi experience. If you're lucky, you'll get to see the Marlborough Sounds on sunset by air. Not recommended for nervous flyers).<br>
+    3. The Interislander - ferry that crosses the cook strait. 3-4 hour trip and beautiful views. Can go on foot or take your car.
+    </p>
+    
+    <p><b>What do I do with my kid/s?</b><br>
+    We love all the tiny people in our lives and would love them to join the ceremony, but we'll arrange baby sitters for the rest of the evening. Bring them to the foreshore at midday and we'll take care of the rest. They'll be with you for the ceremony and we'll have a baby sitter arranged for the rest of the evening. If you need more details, or have special requirements send us a message in the form above, or to either Malcolm or Janet and we'll give you all the details.</p>
+  </div>
+
+  <script>
+    // adapted from https://github.com/hunterloftis/playfuljs-demos/blob/gh-pages/particles/index.html
+    var DAMPING = 0.999;
+    var GRAVITY = 0.0005;
+    var EXPLOSION = { x: 0.02, y: -0.04 }
+    var PARTICLES = 200;
+    var GROW_SPEED = 0.1;
+    var GLITTER_CHANCE = 0;
+    var MAX_AGE = 200;
+    var SIZE = 3;
+
+    function Particle(x, y, velocity, colour) {
+      this.velocity = velocity;
+      this.x = x;
+      this.y = y;
+      this.colour = colour;
+      this.size = SIZE;
+      this.age = 0;
+    }
+
+    Particle.prototype.grow = function() {
+      this.size += GROW_SPEED;
+    }
+
+    Particle.prototype.bounce = function() {
+      if (this.x < 0 || this.x > width) {
+        this.velocity.x = -this.velocity.x;
+      }
+    }
+
+    Particle.prototype.integrate = function() {
+      this.velocity.x *= DAMPING;
+      this.velocity.y *= DAMPING;
+      this.x += this.velocity.x;
+      this.y += this.velocity.y;
+    };
+
+    Particle.prototype.gravity = function() {
+      this.velocity.y += height * GRAVITY;
+    };
+
+    Particle.prototype.draw = function() {
+      if (Math.random() * 100 < GLITTER_CHANCE) {
+        ctx.fillStyle = "#fff";
+      } else {
+        ctx.fillStyle = this.colour;
+      }
+      ctx.beginPath();
+      for (var i = 0; i < 3; ++i) {
+        var point = this.randomNearPoint(this.size);
+        ctx.lineTo(point.x, point.y);
+      }
+      ctx.closePath();
+      ctx.fill();
+    };
+
+    Particle.prototype.randomNearPoint = function(radius) {
+      var angle = Math.random() * Math.PI * 2;
+      var x = this.x + Math.cos(angle) * radius;
+      var y = this.y + Math.sin(angle) * radius;
+      return { x: x, y: y };
+    }
+
+    Particle.prototype.isDead = function() {
+      this.age++;
+      return this.age > MAX_AGE;
+    }
+
+    var display = document.getElementById('display');
+    var ctx = display.getContext('2d');
+    var particles = [];
+    var width = display.width = window.innerWidth;
+    var height = display.height = window.innerHeight;
+
+    fireConfetti();
+
+    document.getElementById('header').addEventListener('mouseover', fireConfetti);
+    document.getElementById('content').addEventListener('touchstart', fireConfetti);
+
+    function fireConfetti() {
+      var source = { x: width/2, y: height }
+      for (var i = 0; i < PARTICLES; i++) {
+        var velocity = { 
+          x: Math.random() * width * EXPLOSION.x - width * EXPLOSION.x * 0.5,
+          y: Math.random() * height * EXPLOSION.y
+        }
+        var colour = randomColour(PARTICLES, i);
+        particles.push(new Particle(source.x, source.y, velocity, colour));
+      }
+    }
+
+    // from https://stackoverflow.com/a/7419630/281657
+    function randomColour(numOfSteps, step) {
+      var r, g, b;
+      var h = step / numOfSteps;
+      var i = ~~(h * 6);
+      var f = h * 6 - i;
+      var q = 1 - f;
+      switch(i % 6){
+          default:
+          case 0: r = 1; g = f; b = 0; break; // orange and yellow
+          // case 1: r = q; g = 1; b = 0; break; // yello and flurogreen
+          // case 2: r = 0; g = 1; b = f; break; // green and blue
+          // case 3: r = 0; g = q; b = 1; break; // blue and lightblue
+          // case 4: r = f; g = 0; b = 1; break; // blue and purple
+          // case 5: r = 1; g = 0; b = q; break; // pink and red
+      }
+      var c = "#" + ("00" + (~ ~(r * 255)).toString(16)).slice(-2) + ("00" + (~ ~(g * 255)).toString(16)).slice(-2) + ("00" + (~ ~(b * 255)).toString(16)).slice(-2);
+      return (c);
+    }
+
+    requestAnimationFrame(frame);
+
+    function frame() {
+      requestAnimationFrame(frame);
+      ctx.clearRect(0, 0, width, height);
+      for (var i = 0; i < particles.length; i++) {
+        particles[i].gravity();
+        particles[i].bounce();
+        particles[i].grow();
+        particles[i].integrate();
+        particles[i].draw();
+        if (particles[i].isDead()) {
+          particles.splice(i, 1);
+        }
+      }
+    }
+  </script>
+</body>
+</html>
