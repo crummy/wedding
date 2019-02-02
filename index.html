@@ -39,6 +39,14 @@
         margin: 1em;
       }
     }
+    .hidden {
+      display: none;
+    }
+    #question1, #question2, #question3, #question4, #question5 {
+      font-weight: bold;
+      padding-top: 1em;
+      cursor: pointer;
+    }
   </style>
 </head>
 
@@ -56,25 +64,25 @@
     
     <iframe id="JotFormIFrame-90221138204847" allowtransparency="true" src="https://form.jotform.co/90221138204847" frameborder="0" style="width: 1px; min-width: 100%; height:539px; border:none;" scrolling="no" > </iframe> <script type="text/javascript"> var ifr = document.getElementById("JotFormIFrame-90221138204847"); if(window.location.href && window.location.href.indexOf("?") > -1) { var get = window.location.href.substr(window.location.href.indexOf("?") + 1); if(ifr && get.length > 0) { var src = ifr.src; src = src.indexOf("?") > -1 ? src + "&" + get : src + "?" + get; ifr.src = src; } } window.handleIFrameMessage = function(e) { if (typeof e.data === 'object') { return; } var args = e.data.split(":"); if (args.length > 2) { iframe = document.getElementById("JotFormIFrame-" + args[(args.length - 1)]); } else { iframe = document.getElementById("JotFormIFrame"); } if (!iframe) { return; } switch (args[0]) { case "scrollIntoView": iframe.scrollIntoView(); break; case "setHeight": iframe.style.height = args[1] + "px"; break; case "collapseErrorPage": if (iframe.clientHeight > window.innerHeight) { iframe.style.height = window.innerHeight + "px"; } break; case "reloadPage": window.location.reload(); break; case "loadScript": var src = args[1]; if (args.length > 3) { src = args[1] + ':' + args[2]; } var script = document.createElement('script'); script.src = src; script.type = 'text/javascript'; document.body.appendChild(script); break; case "exitFullscreen": if (window.document.exitFullscreen) window.document.exitFullscreen(); else if (window.document.mozCancelFullScreen) window.document.mozCancelFullScreen(); else if (window.document.mozCancelFullscreen) window.document.mozCancelFullScreen(); else if (window.document.webkitExitFullscreen) window.document.webkitExitFullscreen(); else if (window.document.msExitFullscreen) window.document.msExitFullscreen(); break; } var isJotForm = (e.origin.indexOf("jotform") > -1) ? true : false; if(isJotForm && "contentWindow" in iframe && "postMessage" in iframe.contentWindow) { var urls = {"docurl":encodeURIComponent(document.URL),"referrer":encodeURIComponent(document.referrer)}; iframe.contentWindow.postMessage(JSON.stringify({"type":"urls","value":urls}), "*"); } }; if (window.addEventListener) { window.addEventListener("message", handleIFrameMessage, false); } else if (window.attachEvent) { window.attachEvent("onmessage", handleIFrameMessage); } </script>
 
-    <p><b>Smart and comfy dress!? I need more details. Is it formal, or casual, or smart casual or business casual? Should I wear my glittery suit, or my velvet one?</b><br>
-    We'd recommend wearing something you feel a bit fancy in, but not too fancy. Ladies don't need to wear heels and men don't need to wear suit jackets or ties. The surroundings will be grass and beach and we'll dance into the evening so it could get chillier later. Fingers crossed for no rain, but if it does, there will be a wet weather back up that is sheltered.</p>
+    <div id="question1">Smart and comfy dress!? I need more details. Is it formal, or casual, or smart casual or business casual? Should I wear my glittery suit, or my velvet one?</div>
+    <div id="answer1" class="hidden">We'd recommend wearing something you feel a bit fancy in, but not too fancy. Ladies don't need to wear heels and men don't need to wear suit jackets or ties. The surroundings will be grass and beach and we'll dance into the evening so it could get chillier later. Fingers crossed for no rain, but if it does, there will be a wet weather back up that is sheltered.</div>
     
-    <p><b>I can get hangry. Should I bring snacks, or will you have food?</b><br>
-    There will be appetisers straight after the ceremony and into the evening. There will be a cocktail menu for the dinner, brought to you by one of Marlborough's best (and most lovely) chefs full of proudly sourced local ingredients.</p>
+    <div id="question2">I can get hangry. Should I bring snacks, or will you have food?</div>
+    <div id="answer2" class="hidden">There will be appetisers straight after the ceremony and into the evening. There will be a cocktail menu for the dinner, brought to you by one of Marlborough's best (and most lovely) chefs full of proudly sourced local ingredients.</div>
     
-    <p><b>Where should I stay?</b><br>
-    Accomodation is recommended around Picton foreshore. Here are a few recommended hotels close by to our meeting point.</p>
+    <div id="question3">Where should I stay?</div>
+    <div id="answer3" class="hidden">Accomodation is recommended around Picton foreshore. Here are a few recommended hotels close by to our meeting point.</div>
     
-    <p><b>How do I get to this place called Picton?</b><br>
-    Flying to Wellington (beautiful capital city of NZ) is your best bet.<br>
+    <div id="question4">How do I get to this place called Picton?</div>
+    <div id="answer4" class="hidden">Flying to Wellington (beautiful capital city of NZ) is your best bet.<br>
     Once in Wellington, you have a few options:<br>
     1. Internal flight (Jetstar or AirNZ - see flights.google.com)<br>
     2. Soundsair (tiny flight that is around $70 and quite the kiwi experience. If you're lucky, you'll get to see the Marlborough Sounds on sunset by air. Not recommended for nervous flyers).<br>
     3. The Interislander - ferry that crosses the cook strait. 3-4 hour trip and beautiful views. Can go on foot or take your car.
-    </p>
+    </div>
     
-    <p><b>What do I do with my kid/s?</b><br>
-    We love all the tiny people in our lives and would love them to join the ceremony, but we'll arrange baby sitters for the rest of the evening. Bring them to the foreshore at midday and we'll take care of the rest. They'll be with you for the ceremony and we'll have a baby sitter arranged for the rest of the evening. If you need more details, or have special requirements send us a message in the form above, or to either Malcolm or Janet and we'll give you all the details.</p>
+    <div id="question5">What do I do with my kid/s?</div>
+    <div id="answer5" class="hidden">We love all the tiny people in our lives and would love them to join the ceremony, but we'll arrange baby sitters for the rest of the evening. Bring them to the foreshore at midday and we'll take care of the rest. They'll be with you for the ceremony and we'll have a baby sitter arranged for the rest of the evening. If you need more details, or have special requirements send us a message in the form above, or to either Malcolm or Janet and we'll give you all the details.</div>
   </div>
 
   <script>
@@ -204,6 +212,16 @@
           particles.splice(i, 1);
         }
       }
+    }
+
+    document.getElementById("question1").addEventListener("mousedown", function() { show("answer1") });
+    document.getElementById("question2").addEventListener("mousedown", function() { show("answer2") });
+    document.getElementById("question3").addEventListener("mousedown", function() { show("answer3") });
+    document.getElementById("question4").addEventListener("mousedown", function() { show("answer4") });
+    document.getElementById("question5").addEventListener("mousedown", function() { show("answer5") });
+
+    function show(element) {
+      document.getElementById(element).className = "";
     }
   </script>
 </body>
