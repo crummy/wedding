@@ -95,6 +95,8 @@
     var GLITTER_CHANCE = 0;
     var MAX_AGE = 200;
     var SIZE = 3;
+    var frameCount = 0;
+    var FRAMES_PER_GLITTER = 4;
 
     function Particle(x, y, velocity, colour) {
       this.velocity = velocity;
@@ -103,6 +105,7 @@
       this.colour = colour;
       this.size = SIZE;
       this.age = 0;
+      this.points = []
     }
 
     Particle.prototype.grow = function() {
@@ -132,10 +135,16 @@
       } else {
         ctx.fillStyle = this.colour;
       }
+      if (frameCount % FRAMES_PER_GLITTER == 0) {
+        this.points = [];
+        for (var i = 0; i < 3; ++i) {
+          var point = this.randomNearPoint(this.size);
+          this.points.push(point);
+        }
+      }
       ctx.beginPath();
-      for (var i = 0; i < 3; ++i) {
-        var point = this.randomNearPoint(this.size);
-        ctx.lineTo(point.x, point.y);
+      for (var i = 0; i < this.points.length; ++i) {
+        ctx.lineTo(this.x + this.points[i].x, this.y + this.points[i].y);
       }
       ctx.closePath();
       ctx.fill();
@@ -143,8 +152,8 @@
 
     Particle.prototype.randomNearPoint = function(radius) {
       var angle = Math.random() * Math.PI * 2;
-      var x = this.x + Math.cos(angle) * radius;
-      var y = this.y + Math.sin(angle) * radius;
+      var x = Math.cos(angle) * radius;
+      var y = Math.sin(angle) * radius;
       return { x: x, y: y };
     }
 
@@ -200,6 +209,7 @@
     requestAnimationFrame(frame);
 
     function frame() {
+      frameCount++;
       requestAnimationFrame(frame);
       ctx.clearRect(0, 0, width, height);
       for (var i = 0; i < particles.length; i++) {
