@@ -5,8 +5,27 @@
   <link href="https://fonts.googleapis.com/css?family=Cutive+Mono" rel="stylesheet">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <style>
+    #header {
+      text-align: center;
+      margin-top: 3em;
+      padding: 1em;
+
+    }
+    #strip {
+      background-image: url("goldstrip.jpg");
+      background-size: cover;
+      width: 80%;
+      margin: 0px auto;
+      padding: 0.1em;
+    }
     body {
       background-color: #F2F4F3;
+      font-family: 'Cutive Mono', monospace;
+      font-size: 1.75em;
+      color: #2E2F2F;
+      z-index: 1;
+      margin: 0;
+      padding: 0;
     }
     hr {
       border-top: 1px solid #2E2F2F;
@@ -14,15 +33,10 @@
     }
     canvas, #content {
       position: absolute;
+      top: 0;
     }
     canvas {
       z-index: 0;
-    }
-    #content {
-      font-family: 'Cutive Mono', monospace;
-      font-size: 1.75em;
-      color: #2E2F2F;
-      z-index: 1;
     }
     #display {
       position: fixed;
@@ -30,8 +44,8 @@
       pointer-events: none;
     }
     @media (min-width: 768px) {
-      #content {
-        margin: 8em;
+      #content  {
+        margin: 1em 6em 2em 6em;
       }
     }
     @media (max-width: 768px) {
@@ -52,9 +66,9 @@
 
 <body>
   <canvas id="display"></canvas>
+  <div id="header">Janet And Malcolm Are Getting Married</div>
+  <div id="strip"></div>
   <div id="content">
-    <p id="header">Janet And Malcolm Are Getting Married</p>
-    <hr>
     <p>
       Meet us at the Picton foreshore at <b>midday X September</b> and we'll take care of the rest. 
     </p>
@@ -131,6 +145,7 @@
 
     Particle.prototype.draw = function() {
       if (Math.random() * 100 < GLITTER_CHANCE) {
+        //strokeStar(this.x, this.y, this.size * 0.6, 8, this.size * 0.5);
         ctx.fillStyle = "#fff";
       } else {
         ctx.fillStyle = this.colour;
@@ -142,11 +157,14 @@
           this.points.push(point);
         }
       }
+      ctx.lineWidth = 2;
+      ctx.strokeStyle = "#dbb030"
       ctx.beginPath();
       for (var i = 0; i < this.points.length; ++i) {
         ctx.lineTo(this.x + this.points[i].x, this.y + this.points[i].y);
       }
       ctx.closePath();
+      ctx.stroke();
       ctx.fill();
     };
 
@@ -186,24 +204,33 @@
       }
     }
 
+    // from https://stackoverflow.com/a/45140101/281657
+    function strokeStar(x, y, r, n, inset) {
+      ctx.save();
+      ctx.beginPath();
+      ctx.translate(x, y);
+      ctx.moveTo(0,0-r);
+      for (var i = 0; i < n; i++) {
+          ctx.rotate(Math.PI / n);
+          ctx.lineTo(0, 0 - (r*inset));
+          ctx.rotate(Math.PI / n);
+          ctx.lineTo(0, 0 - r);
+      }
+      ctx.closePath();
+      ctx.fill();
+      ctx.restore();
+    }
+
     // from https://stackoverflow.com/a/7419630/281657
     function randomColour(numOfSteps, step) {
-      var r, g, b;
-      var h = step / numOfSteps;
-      var i = ~~(h * 6);
-      var f = h * 6 - i;
-      var q = 1 - f;
-      switch(i % 6){
-          default:
-          case 0: r = 1; g = f; b = 0; break; // orange and yellow
-          // case 1: r = q; g = 1; b = 0; break; // yello and flurogreen
-          // case 2: r = 0; g = 1; b = f; break; // green and blue
-          // case 3: r = 0; g = q; b = 1; break; // blue and lightblue
-          // case 4: r = f; g = 0; b = 1; break; // blue and purple
-          // case 5: r = 1; g = 0; b = q; break; // pink and red
+      var colour = Math.random();
+      if (colour < 0.33) {
+        return "#F9D68C"
+      } else if (colour < 0.66) {
+        return "#D5AA74"
+      } else {
+        return "#fff1d3"
       }
-      var c = "#" + ("00" + (~ ~(r * 255)).toString(16)).slice(-2) + ("00" + (~ ~(g * 255)).toString(16)).slice(-2) + ("00" + (~ ~(b * 255)).toString(16)).slice(-2);
-      return (c);
     }
 
     requestAnimationFrame(frame);
