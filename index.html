@@ -15,8 +15,8 @@
       background-image: url("goldstrip.jpg");
       background-size: cover;
       width: 100%;
-      margin: 0px auto;
       padding: 0.1em;
+      margin-bottom: 2em;
     }
     body {
       background-color: #F2F4F3;
@@ -93,7 +93,7 @@
       </p>
     </div>
     <div class="content">
-      <p>Frequently Asked Questions</p>
+      <div>Frequently Asked Questions</div>
 
       <div class="question" id="q1">Smart and comfy dress!? I need more details. Is it formal, or casual, or smart casual or business casual? Should I wear my glittery suit, or my velvet one?</div>
       <div id="a1" class="answer hidden">We'd recommend wearing something you feel a bit fancy in, but not too fancy. Ladies don't need to wear heels and men don't need to wear suit jackets or ties. The surroundings will be grass and beach and we'll dance into the evening so it could get chillier later. Fingers crossed for no rain, but if it does, there will be a wet weather back up that is sheltered.</div>
@@ -271,10 +271,11 @@
       }
     }
 
+    // FAQ click handling
     document.querySelectorAll(".question").forEach(function(question) {
       question.addEventListener("mousedown", function() {
         document.querySelectorAll(".answer").forEach(function(answer) {
-          if (answer === question.nextElementSibling) {
+          if (answer === question.nextElementSibling && answer.classList.contains("hidden")) {
             answer.classList.remove("hidden");
           } else if (!answer.classList.contains("hidden")) {
             answer.classList.add("hidden");
