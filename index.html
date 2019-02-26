@@ -107,7 +107,7 @@
       <div class="question" id="q4">How do I get to this place called Picton?</div>
       <div id="a4" class="answer hidden">Flying to Wellington (beautiful capital city of NZ) is your best bet.<br>
       Once in Wellington, you have a few options:<br>
-      1. Internal flight (Jetstar or AirNZ - see flights.google.com)<br>
+      1. Internal flight (Jetstar or AirNZ - see <a href="https://flights.google.com">flights.google.com</a>)<br>
       2. Soundsair (tiny flight that is around $70 and quite the kiwi experience. If you're lucky, you'll get to see the Marlborough Sounds on sunset by air. Not recommended for nervous flyers).<br>
       3. The Interislander - ferry that crosses the cook strait. 3-4 hour trip and beautiful views. Can go on foot or take your car.
       </div>
@@ -271,23 +271,26 @@
       }
     }
 
-    document.getElementById("q1").addEventListener("mousedown", function() { show("a1") });
-    document.getElementById("q2").addEventListener("mousedown", function() { show("a2") });
-    document.getElementById("q3").addEventListener("mousedown", function() { show("a3") });
-    document.getElementById("q4").addEventListener("mousedown", function() { show("a4") });
-    document.getElementById("q5").addEventListener("mousedown", function() { show("a5") });
-    document.getElementById("a1").addEventListener("mousedown", function() { hide("a1") });
-    document.getElementById("a2").addEventListener("mousedown", function() { hide("a2") });
-    document.getElementById("a3").addEventListener("mousedown", function() { hide("a3") });
-    document.getElementById("a4").addEventListener("mousedown", function() { hide("a4") });
-    document.getElementById("a5").addEventListener("mousedown", function() { hide("a5") });
+    document.getElementById("q1").addEventListener("mousedown", function() { show("#a1") });
+    document.getElementById("q2").addEventListener("mousedown", function() { show("#a2") });
+    document.getElementById("q3").addEventListener("mousedown", function() { show("#a3") });
+    document.getElementById("q4").addEventListener("mousedown", function() { show("#a4") });
+    document.getElementById("q5").addEventListener("mousedown", function() { show("#a5") });
+    document.getElementById("a1").addEventListener("mousedown", function() { hide("#a1") });
+    document.getElementById("a2").addEventListener("mousedown", function() { hide("#a2") });
+    document.getElementById("a3").addEventListener("mousedown", function() { hide("#a3") });
+    document.getElementById("a4").addEventListener("mousedown", function() { hide("#a4") });
+    document.getElementById("a5").addEventListener("mousedown", function() { hide("#a5") });
 
     function show(element) {
-      document.getElementById(element).className = "answer";
+      document.querySelectorAll(".answer").forEach(function(answer) {
+        answer.className = "answer hidden";
+      });
+      document.querySelector(element).className = "answer";
     }
 
     function hide(element) {
-      document.getElementById(element).className = "answer hidden";
+      document.querySelector(element).className = "answer hidden";
     }
   </script>
 </body>
