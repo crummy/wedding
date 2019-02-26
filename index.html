@@ -271,27 +271,17 @@
       }
     }
 
-    document.getElementById("q1").addEventListener("mousedown", function() { show("#a1") });
-    document.getElementById("q2").addEventListener("mousedown", function() { show("#a2") });
-    document.getElementById("q3").addEventListener("mousedown", function() { show("#a3") });
-    document.getElementById("q4").addEventListener("mousedown", function() { show("#a4") });
-    document.getElementById("q5").addEventListener("mousedown", function() { show("#a5") });
-    document.getElementById("a1").addEventListener("mousedown", function() { hide("#a1") });
-    document.getElementById("a2").addEventListener("mousedown", function() { hide("#a2") });
-    document.getElementById("a3").addEventListener("mousedown", function() { hide("#a3") });
-    document.getElementById("a4").addEventListener("mousedown", function() { hide("#a4") });
-    document.getElementById("a5").addEventListener("mousedown", function() { hide("#a5") });
-
-    function show(element) {
-      document.querySelectorAll(".answer").forEach(function(answer) {
-        answer.className = "answer hidden";
+    document.querySelectorAll(".question").forEach(function(question) {
+      question.addEventListener("mousedown", function() {
+        document.querySelectorAll(".answer").forEach(function(answer) {
+          if (answer === question.nextElementSibling) {
+            answer.classList.remove("hidden");
+          } else if (!answer.classList.contains("hidden")) {
+            answer.classList.add("hidden");
+          }
+        });
       });
-      document.querySelector(element).className = "answer";
-    }
-
-    function hide(element) {
-      document.querySelector(element).className = "answer hidden";
-    }
+    });
   </script>
 </body>
 </html>
